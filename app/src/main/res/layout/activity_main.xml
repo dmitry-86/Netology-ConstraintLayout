@@ -4,16 +4,159 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@sample/posts_avatars"
+        app:layout_constraintBottom_toTopOf="@id/barrier"
+        android:layout_marginBottom="16dp"/>
+
     <TextView
-        android:id="@+id/mainTextView"
+        android:id="@+id/author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/offset"
+        android:ellipsize="end"
+        android:singleLine="true"
+        tools:text="@sample/posts.json/data/author"
+        app:layout_constraintEnd_toStartOf="@id/menu"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintBottom_toTopOf="@id/published"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+    <TextView
+        android:id="@+id/published"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="@dimen/offset"
+        tools:text="@sample/posts.json/data/published"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toBottomOf="@id/author"
+        app:layout_constraintBottom_toTopOf="@id/barrier"
+        android:layout_marginBottom="16dp"
+        />
+
+    <ImageButton
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/transparent"/>
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="avatar, published, menu"
+        />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@sample/posts.json/data/content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:autoLink="web"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barrier"
+        app:layout_constraintBottom_toTopOf="@id/barrier2"
+        android:layout_marginTop="@dimen/offset"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="content"
+        />
+
+    <ImageButton
+        android:id="@+id/favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        android:layout_marginTop="@dimen/offset"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/description_of_image" />
+
+    <TextView
+        android:id="@+id/likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_likes"
+        android:textSize="@dimen/text_size"
+        android:layout_marginTop="@dimen/offset"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/favorite"
+        app:layout_constraintTop_toBottomOf="@id/barrier2" />
+
+    <ImageButton
+        android:id="@+id/share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_baseline_share_24"
+        app:layout_constraintStart_toEndOf="@id/likes"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        android:layout_marginTop="@dimen/offset"
+        android:layout_marginStart="@dimen/offset"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/shares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_shares"
+        android:textSize="@dimen/text_size"
+        android:layout_marginTop="@dimen/offset"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/share"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"/>
+
+    <ImageButton
+        android:id="@+id/viewsImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_baseline_remove_red_eye_24"
+        android:layout_marginTop="@dimen/offset"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        app:layout_constraintEnd_toStartOf="@id/views"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/views"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_views"
+        android:textSize="20sp"
+        android:layout_marginTop="@dimen/offset"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@android:color/holo_red_light"
+        android:layout_height="3sp"
+        app:layout_constraintTop_toBottomOf="@id/favorite"
+        android:layout_marginTop="@dimen/offset"
+        tools:ignore="SmallSp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
