@@ -14,11 +14,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@sample/posts_avatars"
+        android:src="@drawable/ic_netology_48dp"
         app:layout_constraintBottom_toTopOf="@id/barrier"
         android:layout_marginBottom="16dp"/>
 
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/authorTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/offset"
@@ -29,18 +30,18 @@
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
-        app:layout_constraintBottom_toTopOf="@id/published"
+        app:layout_constraintBottom_toTopOf="@id/publishedTextView"
         app:layout_constraintVertical_chainStyle="packed"
         />
 
     <TextView
-        android:id="@+id/published"
+        android:id="@+id/publishedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/offset"
         tools:text="@sample/posts.json/data/published"
         app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toBottomOf="@id/author"
+        app:layout_constraintTop_toBottomOf="@id/authorTextView"
         app:layout_constraintBottom_toTopOf="@id/barrier"
         android:layout_marginBottom="16dp"
         />
@@ -60,11 +61,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar, published, menu"
+        app:constraint_referenced_ids="avatar, publishedTextView, menu"
         />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/contentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="@sample/posts.json/data/content"
@@ -81,14 +82,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content"
+        app:constraint_referenced_ids="contentTextView"
         />
 
     <ImageButton
-        android:id="@+id/favorite"
+        android:id="@+id/like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        app:srcCompat="@drawable/ic_baseline_like_border_24"
         android:layout_marginTop="@dimen/offset"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
@@ -96,14 +97,14 @@
         android:contentDescription="@string/description_of_image" />
 
     <TextView
-        android:id="@+id/likes"
+        android:id="@+id/likesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/number_of_likes"
         android:textSize="@dimen/text_size"
         android:layout_marginTop="@dimen/offset"
         android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/favorite"
+        app:layout_constraintStart_toEndOf="@id/like"
         app:layout_constraintTop_toBottomOf="@id/barrier2" />
 
     <ImageButton
@@ -111,14 +112,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_baseline_share_24"
-        app:layout_constraintStart_toEndOf="@id/likes"
+        app:layout_constraintStart_toEndOf="@id/likesTextView"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
         android:layout_marginTop="@dimen/offset"
         android:layout_marginStart="@dimen/offset"
         android:background="@android:color/transparent"/>
 
     <TextView
-        android:id="@+id/shares"
+        android:id="@+id/sharesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/number_of_shares"
@@ -154,7 +155,7 @@
         android:layout_width="match_parent"
         android:background="@android:color/holo_red_light"
         android:layout_height="3sp"
-        app:layout_constraintTop_toBottomOf="@id/favorite"
+        app:layout_constraintTop_toBottomOf="@id/like"
         android:layout_marginTop="@dimen/offset"
         tools:ignore="SmallSp" />
 
