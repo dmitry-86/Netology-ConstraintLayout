@@ -2,13 +2,13 @@ package com.example.nmedia.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModel
 import androidx.activity.viewModels
 import com.example.nmedia.R
+import com.example.nmedia.adapter.PostCallback
+import com.example.nmedia.adapter.PostsAdapter
 import com.example.nmedia.databinding.ActivityMainBinding
 import com.example.nmedia.dto.Post
 import com.example.nmedia.viewmodel.PostViewModel
-import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,52 +20,26 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: PostViewModel by viewModels()
 
-        viewModel.data.observe(this) { post ->
-
-
-            with(binding) {
-
-                authorTextView.text = post.author
-                publishedTextView.text = post.published
-                contentTextView.text = post.content
-
-                //лайки
-                like.setImageResource(
-                    if (post.likedByMe) R.drawable.ic_baseline_liked_24 else R.drawable.ic_baseline_like_border_24
-                )
-                likesTextView.text = getFormattedNumber(post.likes)
-
-                //репосты
-                sharesTextView.text = getFormattedNumber(post.shares)
-
+        val adapter = PostsAdapter(object : PostCallback{
+            override fun onLike(post: Post) {
+                viewModel.likeById(post.id)
             }
 
-            binding.like.setOnClickListener {
-                viewModel.like()
+            override fun onShare(post: Post) {
+               viewModel.shareById(post.id)
             }
 
-            binding.share.setOnClickListener {
-                viewModel.share()
-            }
+        })
+
+        binding.mainRecyclerView.adapter = adapter
+
+        viewModel.data.observe(this) { posts ->
+
+            adapter.submitList(posts)
 
         }
+
     }
-
-    private fun getFormattedNumber(number: Int): String =
-        when {
-            number >= 1000000 -> {
-                DecimalFormat("#.#M").format((number.toFloat() / 1000000))
-            }
-            number >= 10000 -> {
-                DecimalFormat("#K").format((number / 1000))
-            }
-            number >= 1000 -> {
-                DecimalFormat("#.#K").format((number.toFloat() / 1000))
-            }
-            else -> {
-                number.toString()
-            }
-        }
 
 }
 
