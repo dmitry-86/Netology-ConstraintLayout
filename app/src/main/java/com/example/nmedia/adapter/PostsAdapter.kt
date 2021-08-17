@@ -48,7 +48,6 @@ class PostViewHolder(
 
             sharesTextView.text = getFormattedNumber(post.shares)
 
-
             likeImageButton.setOnClickListener {
                 postCallback.onLike(post)
             }

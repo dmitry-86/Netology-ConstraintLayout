@@ -8,7 +8,7 @@
     tools:context=".activity.MainActivity">
 
     <ImageView
-        android:id="@+id/avatarImgeView"
+        android:id="@+id/avatarImageView"
         android:layout_width="48dp"
         android:layout_height="48dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,14 +22,14 @@
         android:id="@+id/authorTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/offset"
+        android:layout_marginStart="@dimen/offset"
         android:ellipsize="end"
         android:singleLine="true"
         tools:text="@sample/posts.json/data/author"
         app:layout_constraintEnd_toStartOf="@id/menu"
-        app:layout_constraintBottom_toBottomOf="@id/avatarImgeView"
-        app:layout_constraintStart_toEndOf="@id/avatarImgeView"
-        app:layout_constraintTop_toTopOf="@id/avatarImgeView"
+        app:layout_constraintBottom_toBottomOf="@id/avatarImageView"
+        app:layout_constraintStart_toEndOf="@id/avatarImageView"
+        app:layout_constraintTop_toTopOf="@id/avatarImageView"
         app:layout_constraintBottom_toTopOf="@id/publishedTextView"
         app:layout_constraintVertical_chainStyle="packed"
         />
@@ -38,9 +38,9 @@
         android:id="@+id/publishedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/offset"
+        android:layout_marginStart="@dimen/offset"
         tools:text="@sample/posts.json/data/published"
-        app:layout_constraintStart_toEndOf="@id/avatarImgeView"
+        app:layout_constraintStart_toEndOf="@id/avatarImageView"
         app:layout_constraintTop_toBottomOf="@id/authorTextView"
         app:layout_constraintBottom_toTopOf="@id/barrier"
         android:layout_marginBottom="16dp"
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatarImgeView, publishedTextView, menu"
+        app:constraint_referenced_ids="avatarImageView, publishedTextView, menu"
         />
 
     <TextView

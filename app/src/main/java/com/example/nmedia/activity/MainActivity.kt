@@ -20,13 +20,13 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: PostViewModel by viewModels()
 
-        val adapter = PostsAdapter(object : PostCallback{
+        val adapter = PostsAdapter(object : PostCallback {
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
             }
 
             override fun onShare(post: Post) {
-               viewModel.shareById(post.id)
+                viewModel.shareById(post.id)
             }
 
         })

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.nmedia.dto.Post
 
-class PostRepositoryInMemoryImpl: PostRepository{
+class PostRepositoryInMemoryImpl : PostRepository {
 
     private var posts = listOf(
         Post(
@@ -79,22 +79,21 @@ class PostRepositoryInMemoryImpl: PostRepository{
     override fun likeById(id: Long) {
         posts = posts.map {
             if (it.id != id) it else it.copy(likedByMe = !it.likedByMe)
-            }
+        }
 
         posts = posts.map {
-            if (it.id != id){
+            if (it.id != id) {
                 it
-            }else{
+            } else {
                 if (it.likedByMe) it.copy(likes = it.likes + 1) else it.copy(likes = it.likes - 1)
             }
         }
-            data.value = posts
-        }
-
+        data.value = posts
+    }
 
     override fun shareById(id: Long) {
         posts = posts.map {
-            if (it.id != id) it else it.copy(shares = it.shares+1)
+            if (it.id != id) it else it.copy(shares = it.shares + 1)
         }
         data.value = posts
     }
