@@ -5,4 +5,12 @@
     <string name="number_of_likes">10</string>
     <string name="number_of_shares">5</string>
     <string name="number_of_views">5</string>
+    <string name="description_post_like">Like</string>
+    <string name="description_post_share">Share</string>
+    <string name="description_post_save">Save</string>
+    <string name="menu_remove">Remove</string>
+    <string name="post_text">Post Text</string>
+    <string name="menu_edit">Edit</string>
+    <string name="error_empty_content">Content can\'t be empty</string>
+
 </resources>

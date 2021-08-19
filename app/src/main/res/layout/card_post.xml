@@ -22,7 +22,7 @@
         android:id="@+id/authorTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/offset"
+        android:layout_marginStart="@dimen/common_spacing"
         android:ellipsize="end"
         android:singleLine="true"
         tools:text="@sample/posts.json/data/author"
@@ -38,7 +38,7 @@
         android:id="@+id/publishedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/offset"
+        android:layout_marginStart="@dimen/common_spacing"
         tools:text="@sample/posts.json/data/published"
         app:layout_constraintStart_toEndOf="@id/avatarImageView"
         app:layout_constraintTop_toBottomOf="@id/authorTextView"
@@ -66,15 +66,16 @@
 
     <TextView
         android:id="@+id/contentTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="@sample/posts.json/data/content"
         app:layout_constraintEnd_toEndOf="parent"
         android:autoLink="web"
+        android:layout_gravity="left"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier"
         app:layout_constraintBottom_toTopOf="@id/barrier2"
-        android:layout_marginTop="@dimen/offset"
+        android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginBottom="16dp"/>
 
     <androidx.constraintlayout.widget.Barrier
@@ -90,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_baseline_like_border_24"
-        android:layout_marginTop="@dimen/offset"
+        android:layout_marginTop="@dimen/common_spacing"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
         android:background="@android:color/transparent"
@@ -102,7 +103,7 @@
         android:layout_height="wrap_content"
         android:text="@string/number_of_likes"
         android:textSize="@dimen/text_size"
-        android:layout_marginTop="@dimen/offset"
+        android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@id/likeImageButton"
         app:layout_constraintTop_toBottomOf="@id/barrier2" />
@@ -114,8 +115,8 @@
         app:srcCompat="@drawable/ic_baseline_share_24"
         app:layout_constraintStart_toEndOf="@id/likesTextView"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        android:layout_marginTop="@dimen/offset"
-        android:layout_marginStart="@dimen/offset"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:layout_marginStart="@dimen/common_spacing"
         android:background="@android:color/transparent"/>
 
     <TextView
@@ -124,7 +125,7 @@
         android:layout_height="wrap_content"
         android:text="@string/number_of_shares"
         android:textSize="@dimen/text_size"
-        android:layout_marginTop="@dimen/offset"
+        android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@id/shareImageButton"
         app:layout_constraintTop_toBottomOf="@id/barrier2"/>
@@ -134,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_baseline_remove_red_eye_24"
-        android:layout_marginTop="@dimen/offset"
+        android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginEnd="8dp"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
         app:layout_constraintEnd_toStartOf="@id/viewsTextView"
@@ -146,7 +147,7 @@
         android:layout_height="wrap_content"
         android:text="@string/number_of_views"
         android:textSize="20sp"
-        android:layout_marginTop="@dimen/offset"
+        android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"/>
@@ -156,7 +157,7 @@
         android:background="@android:color/holo_red_light"
         android:layout_height="3dp"
         app:layout_constraintTop_toBottomOf="@id/likeImageButton"
-        android:layout_marginTop="@dimen/offset"
+        android:layout_marginTop="@dimen/common_spacing"
         tools:ignore="SmallSp" />
 
 

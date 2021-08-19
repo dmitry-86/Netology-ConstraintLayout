@@ -2,17 +2,20 @@ package com.example.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nmedia.R
 import com.example.nmedia.databinding.CardPostBinding
 import com.example.nmedia.dto.Post
-import com.example.nmedia.utils.PostUtils.getFormattedNumber
+import com.example.nmedia.util.AndroidUtils.getFormattedNumber
 
 interface PostCallback{
     fun onLike(post: Post)
     fun onShare(post: Post)
+    fun onEdit(post: Post)
+    fun onRemove(post: Post)
 }
 
 class PostsAdapter(private val postCallback: PostCallback):
@@ -56,9 +59,28 @@ class PostViewHolder(
                 postCallback.onShare(post)
             }
 
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.post_options)
+                    setOnMenuItemClickListener { menuItem ->
+                        when (menuItem.itemId) {
+                            R.id.post_remove -> {
+                                postCallback.onRemove(post)
+                                true
+                            }
+                            R.id.post_edit -> {
+                                postCallback.onEdit(post)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                }.show()
+            }
         }
 
     }
+
 }
 
 class PostDiffCallback: DiffUtil.ItemCallback<Post>(){
