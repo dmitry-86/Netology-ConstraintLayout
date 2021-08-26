@@ -53,8 +53,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
-
-                newPostLauncher.launch(post.content)
             }
 
             override fun onRemove(post: Post) {
@@ -86,13 +84,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-//        viewModel.edited.observe(this) { post ->
-//            if (post.id == 0L) {
-//                return@observe
-//            }
+        viewModel.edited.observe(this) { post ->
+            if (post.id == 0L) {
+                return@observe
+            }
+            newPostLauncher.launch(post.content)
 //            binding.contentEditText.setText(post.content)
 //            binding.contentEditText.requestFocus()
-//        }
+        }
 
 
 //        binding.saveImageButton.setOnClickListener {
