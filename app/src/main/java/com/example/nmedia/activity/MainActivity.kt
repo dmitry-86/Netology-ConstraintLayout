@@ -80,7 +80,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.undoEditsImageButton.setOnClickListener {
-            binding.contentEditText.setText(viewModel.undoEdits())
+            with(binding.contentEditText) {
+                setText("")
+                AndroidUtils.hideKeyboard(this)
+            }
+            binding.group.visibility = View.GONE
         }
 
     }

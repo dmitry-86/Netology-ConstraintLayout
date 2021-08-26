@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.nmedia.dto.Post
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.nmedia.util.AndroidUtils.fromNumToMonth
 
 class PostRepositoryInMemoryImpl : PostRepository {
 
@@ -80,7 +81,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun getAll(): LiveData<List<Post>> = data
 
-    val timeStamp: String = SimpleDateFormat("MM dd в HH:mm").format(Date())
+    private val month = fromNumToMonth(SimpleDateFormat("MM").format(Date()))
+    private val timeStamp: String = SimpleDateFormat("dd $month в HH:mm").format(Date())
 
     override fun likeById(id: Long) {
         posts = posts.map {
