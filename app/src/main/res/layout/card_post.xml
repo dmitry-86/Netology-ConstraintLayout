@@ -7,7 +7,7 @@
     android:padding="@dimen/common_spacing"
     tools:context=".activity.MainActivity">
 
-    <ImageView
+        <ImageView
         android:id="@+id/avatarImageView"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -54,8 +54,8 @@
         app:srcCompat="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:icon="@drawable/ic_baseline_more_vert_24"
         android:background="@android:color/transparent"/>
-
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -75,16 +75,29 @@
         android:layout_gravity="start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier"
-        app:layout_constraintBottom_toTopOf="@id/barrier2"
+        app:layout_constraintBottom_toTopOf="@id/video"
         android:layout_marginTop="@dimen/common_spacing"
         android:layout_marginBottom="@dimen/common_spacing"/>
+
+    <ImageButton
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="240dp"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:layout_marginBottom="@dimen/common_spacing"
+        android:background="@drawable/youtube_video"
+        app:layout_constraintTop_toBottomOf="@+id/contentTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/barrier2"
+        app:srcCompat="@drawable/ic_baseline_play_arrow_24"/>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="contentTextView"/>
+        app:layout_constraintTop_toBottomOf="@+id/video"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/likeButton"
@@ -95,6 +108,7 @@
         android:textSize="@dimen/text_size"
         android:textColor="@color/gray"
         app:icon="@drawable/ic_liked_24dp"
+        android:checkable="true"
         style="@style/Widget.AppTheme.LikeButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
@@ -112,6 +126,7 @@
         app:layout_constraintStart_toEndOf="@id/likeButton"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
         android:layout_marginStart="@dimen/common_spacing"
+        app:icon="@drawable/ic_baseline_share_24"
         android:background="@android:color/transparent"/>
 
     <com.google.android.material.button.MaterialButton
@@ -123,6 +138,7 @@
         android:textSize="@dimen/text_size"
         style="@style/Widget.AppTheme.BasicGrayButton"
         android:textColor="@color/gray"
+        app:icon="@drawable/ic_baseline_views_24"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@android:color/transparent"/>

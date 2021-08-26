@@ -16,6 +16,7 @@ interface PostCallback{
     fun onShare(post: Post)
     fun onEdit(post: Post)
     fun onRemove(post: Post)
+    fun onVideo(post: Post)
 }
 
 class PostsAdapter(private val postCallback: PostCallback):
@@ -44,14 +45,13 @@ class PostViewHolder(
             publishedTextView.text = post.published
             contentTextView.text = post.content
 
-            likeButton.setIconResource(
-                if (post.likedByMe) R.drawable.ic_baseline_liked_24 else R.drawable.ic_baseline_like_border_24
-            )
+//            likeButton.setIconResource(
+//                if (post.likedByMe) R.drawable.ic_baseline_liked_24 else R.drawable.ic_baseline_like_border_24
+//            )
+
+            likeButton.isChecked = post.likedByMe
+
             likeButton.text = getFormattedNumber(post.likes)
-
-            shareButton.setIconResource(R.drawable.ic_baseline_share_24)
-
-            viewsButton.setIconResource(R.drawable.ic_baseline_views_24)
 
             shareButton.text = getFormattedNumber(post.shares)
 
@@ -63,9 +63,12 @@ class PostViewHolder(
                 postCallback.onShare(post)
             }
 
-            menu.setIconResource(R.drawable.ic_baseline_more_vert_24)
+            video.setOnClickListener {
+                postCallback.onVideo(post)
+            }
 
             menu.setOnClickListener {
+
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.post_options)
                     setOnMenuItemClickListener { menuItem ->
