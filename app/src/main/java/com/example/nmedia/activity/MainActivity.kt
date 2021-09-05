@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val adapter = PostsAdapter(object : PostCallback {
+
             override fun onLike(post: Post) {
                 viewModel.likeById(post.id)
             }
@@ -72,12 +73,10 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-
         binding.mainRecyclerView.adapter = adapter
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
         }
-
 
         binding.fab.setOnClickListener {
             newPostLauncher.launch("")
@@ -89,33 +88,7 @@ class MainActivity : AppCompatActivity() {
                 return@observe
             }
             newPostLauncher.launch(post.content)
-//            binding.contentEditText.setText(post.content)
-//            binding.contentEditText.requestFocus()
         }
-
-
-//        binding.saveImageButton.setOnClickListener {
-//            with(binding.contentEditText){
-//                if(text.isNullOrBlank()){
-//                    Toast.makeText(this@MainActivity, R.string.error_empty_content, Toast.LENGTH_SHORT).show()
-//                    return@setOnClickListener
-//                }
-//                viewModel.changeContext(text.toString())
-//                viewModel.save()
-//                setText("")
-//                clearFocus()
-//                AndroidUtils.hideKeyboard(this)
-//            }
-//            binding.group.visibility = View.GONE
-//        }
-//
-//        binding.undoEditsImageButton.setOnClickListener {
-//            with(binding.contentEditText) {
-//                setText("")
-//                AndroidUtils.hideKeyboard(this)
-//            }
-//            binding.group.visibility = View.GONE
-//        }
 
     }
 

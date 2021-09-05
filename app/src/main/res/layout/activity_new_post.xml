@@ -43,6 +43,7 @@
             android:background="@android:color/transparent"
             android:hint="@string/post_text"
             android:minHeight="96dp"
+            android:gravity="start|top"
             app:layout_constraintTop_toBottomOf="@id/container"
             android:inputType="textMultiLine" />
 
