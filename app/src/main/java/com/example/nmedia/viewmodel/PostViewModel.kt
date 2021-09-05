@@ -1,9 +1,12 @@
 package com.example.nmedia.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nmedia.dto.Post
 import com.example.nmedia.repository.PostRepository
+import com.example.nmedia.repository.PostRepositoryFileImpl
 import com.example.nmedia.repository.PostRepositoryInMemoryImpl
 
 private val empty = Post(
@@ -31,7 +34,7 @@ class PostViewModel: ViewModel() {
         edited.value = post
     }
 
-    fun changeContext(content: String){
+    fun changeContent(content: String){
         edited.value.let{
             val text = content.trim()
             if(edited.value?.content == text){
