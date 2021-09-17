@@ -3,13 +3,10 @@ package com.example.nmedia.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.nmedia.db.AppDb
 import com.example.nmedia.dto.Post
 import com.example.nmedia.repository.PostRepository
-import com.example.nmedia.repository.PostRepositoryFileImpl
-import com.example.nmedia.repository.PostRepositoryInMemoryImpl
-import com.example.nmedia.repository.PostRepositorySQLiteImpl
+import com.example.nmedia.repository.PostRepositoryImpl
 
 private val empty = Post(
     id = 0,
@@ -19,10 +16,10 @@ private val empty = Post(
     published = ""
 )
 
-class PostViewModel(application: Application): AndroidViewModel(application) {
+class PostViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: PostRepository = PostRepositorySQLiteImpl(
-    AppDb.getInstance(application).postDao
+    private val repository: PostRepository = PostRepositoryImpl(
+        AppDb.getInstance(application).postDao()
     )
 
 //        PostRepositoryFileImpl(application)

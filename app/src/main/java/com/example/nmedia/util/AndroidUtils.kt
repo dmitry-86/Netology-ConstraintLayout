@@ -6,6 +6,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nmedia.R
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 object AndroidUtils {
 
@@ -44,6 +46,11 @@ object AndroidUtils {
             "11" -> "ноября"
             "12" -> "декабря"
         else -> ""
+    }
+
+    fun timeNow(): String{
+        val month = fromNumToMonth(SimpleDateFormat("MM").format(Date()))
+        return SimpleDateFormat("dd $month в HH:mm").format(Date())
     }
 
 

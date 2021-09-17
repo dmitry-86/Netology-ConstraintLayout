@@ -82,7 +82,12 @@ class FeedFragment : Fragment() {
 
         binding.mainRecyclerView.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner) { posts ->
-            adapter.submitList(posts)
+            val addingNewPost = adapter.itemCount < posts.size
+            adapter.submitList(posts){
+                if(addingNewPost){
+                    binding.mainRecyclerView.scrollToPosition(0)
+                }
+            }
         }
 
         binding.fab.setOnClickListener {
