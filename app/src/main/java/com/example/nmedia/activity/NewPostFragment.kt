@@ -20,7 +20,7 @@ import com.example.nmedia.viewmodel.PostViewModel
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
-class NewPostFragment: Fragment() {
+class NewPostFragment : Fragment() {
 
     companion object {
         var Bundle.textArg: String? by StringArg
@@ -45,11 +45,13 @@ class NewPostFragment: Fragment() {
             viewModel.changeContent(binding.editEditText.text.toString())
             viewModel.save()
             AndroidUtils.hideKeyboard(requireView())
-            findNavController().popBackStack()
+            //findNavController().popBackStack()
+        }
+        viewModel.postCreated.observe(viewLifecycleOwner) {
+            viewModel.loadPosts()
+            findNavController().navigateUp()
         }
 
         return binding.root
     }
-
-
 }

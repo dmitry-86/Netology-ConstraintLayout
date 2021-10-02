@@ -37,8 +37,8 @@ class CardPostFragment : Fragment() {
             return binding.root
         }
 
-        viewModel.data.observe(viewLifecycleOwner) { posts ->
-            posts.map { post ->
+        viewModel.data.observe(viewLifecycleOwner, { state ->
+            state.posts.map { post ->
                 if (post.id == id) {
                     binding.apply {
 
@@ -111,7 +111,7 @@ class CardPostFragment : Fragment() {
                 }
             }
 
-        }
+        })
 
         return binding.root
 

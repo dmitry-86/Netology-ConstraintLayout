@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -35,7 +37,7 @@ class FeedFragment : Fragment() {
         val adapter = PostsAdapter(object : PostCallback {
 
             override fun onLike(post: Post) {
-                viewModel.likeById(post.id)
+                if (!post.likedByMe) viewModel.likeById(post.id) else viewModel.unlikeById(post.id)
             }
 
             override fun onShare(post: Post) {
@@ -60,7 +62,7 @@ class FeedFragment : Fragment() {
             }
 
             override fun onVideo(post: Post) {
-                if(post.videoURL.isBlank()){
+                if (post.videoURL.isBlank()) {
                     Toast.makeText(context, "video is not found", Toast.LENGTH_SHORT).show()
                     return
                 }
@@ -73,21 +75,29 @@ class FeedFragment : Fragment() {
             override fun onItem(post: Post) {
                 viewModel.data.value
                 val bundle = Bundle().apply {
-                    putLong("id",post.id)
+                    putLong("id", post.id)
                 }
-                findNavController().navigate(R.id.action_feedFragment_to_cardPostFragment,bundle)
+                findNavController().navigate(R.id.action_feedFragment_to_cardPostFragment, bundle)
             }
 
         })
 
         binding.mainRecyclerView.adapter = adapter
-        viewModel.data.observe(viewLifecycleOwner) { posts ->
-            val addingNewPost = adapter.itemCount < posts.size
-            adapter.submitList(posts){
-                if(addingNewPost){
+        viewModel.data.observe(viewLifecycleOwner, { state ->
+            adapter.submitList(state.posts)
+            val addingNewPost = adapter.itemCount < state.posts.size
+            adapter.submitList(state.posts) {
+                if (addingNewPost) {
                     binding.mainRecyclerView.scrollToPosition(0)
                 }
             }
+            binding.progress.isVisible = state.loading
+            binding.errorGroup.isVisible = state.error
+            binding.emptyText.isVisible = state.empty
+        })
+
+        binding.retryButton.setOnClickListener {
+            viewModel.loadPosts()
         }
 
         binding.fab.setOnClickListener {
@@ -99,13 +109,18 @@ class FeedFragment : Fragment() {
                 return@observe
             }
             val bundle = Bundle().apply {
-                putString("content",post.content)
-                putBoolean("edit",true)
+                putString("content", post.content)
+                putBoolean("edit", true)
             }
             findNavController().navigate(
                 R.id.action_feedFragment_to_newPostFragment,
                 bundle
             )
+        }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.loadPosts()
+            binding.swipeRefreshLayout.isRefreshing = false
         }
 
         return binding.root

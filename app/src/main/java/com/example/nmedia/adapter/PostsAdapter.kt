@@ -11,7 +11,7 @@ import com.example.nmedia.databinding.FragmentCardPostBinding
 import com.example.nmedia.dto.Post
 import com.example.nmedia.util.AndroidUtils.getFormattedNumber
 
-interface PostCallback{
+interface PostCallback {
     fun onLike(post: Post)
     fun onShare(post: Post)
     fun onEdit(post: Post)
@@ -20,11 +20,12 @@ interface PostCallback{
     fun onItem(post: Post)
 }
 
-class PostsAdapter(private val postCallback: PostCallback):
+class PostsAdapter(private val postCallback: PostCallback) :
     ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = FragmentCardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            FragmentCardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding, postCallback)
     }
 
@@ -39,7 +40,7 @@ class PostsAdapter(private val postCallback: PostCallback):
 class PostViewHolder(
     private val binding: FragmentCardPostBinding,
     private val postCallback: PostCallback
-): RecyclerView.ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
         binding.apply {
@@ -109,7 +110,7 @@ class PostViewHolder(
 
 }
 
-class PostDiffCallback: DiffUtil.ItemCallback<Post>(){
+class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem.id == newItem.id
     }

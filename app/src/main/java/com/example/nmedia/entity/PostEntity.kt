@@ -19,8 +19,8 @@ data class PostEntity(
 ){
     fun toDto() = Post(
         id,
-        author = "Me",
-        published = AndroidUtils.timeNow(),
+        author,
+        published,
         content,
         videoURL,
         likes,
