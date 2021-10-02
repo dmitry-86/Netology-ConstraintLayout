@@ -30,14 +30,12 @@ interface PostDao {
         """)
         fun likeById(id: Long)
 
-
         @Query("""
         UPDATE PostEntity SET
         shares = shares + 1
         WHERE id = :id
         """)
         fun shareById(id: Long)
-
 
         @Query("DELETE FROM PostEntity WHERE id = :id")
         fun removeById(id: Long)
