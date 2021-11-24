@@ -26,11 +26,11 @@ jobs:
           path: app/build/outputs/apk/debug/app-debug.apk
 
 
-- name: Decode google-services.json
-  env:
-    FIREBASE_SECRET: ${{ secrets.NMEDIA_SECRET }}
-  run: echo $NMEDIA_SECRET > Netology-NMedia/app/google-services.json
+      - name: Decode google-services.json
+        env:
+          FIREBASE_SECRET: ${{ secrets.NMEDIA_SECRET }}
+        run: echo $NMEDIA_SECRET > Netology-NMedia/app/google-services.json
 
-- name: Run unit testing
-  run:
-    ./gradlew test
+      - name: Run unit testing
+        run:
+         ./gradlew test
