@@ -29,7 +29,7 @@ jobs:
       - name: Decode google-services.json
         env:
           FIREBASE_SECRET: ${{ secrets.NMEDIA_SECRET }}
-        run: echo $NMEDIA_SECRET > Netology-NMedia/app/google-services.json
+        run: echo $NMEDIA_SECRET > app/google-services.json
 
       - name: Run unit testing
         run:
