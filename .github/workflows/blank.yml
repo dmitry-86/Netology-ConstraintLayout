@@ -29,6 +29,10 @@ jobs:
         env:
           NMEDIA_SECRET: ${{ secrets.NMEDIA_SECRET }}
         run: echo $NMEDIA_SECRET > app/google-services.json
+        
+      - name: Run kLint check
+        run: |
+           ./gradlew ktlintCheck
 
       - name: Run unit testing
         run:
