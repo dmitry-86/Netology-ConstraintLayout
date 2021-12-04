@@ -28,7 +28,11 @@ jobs:
       - name: Decode google-services.json
         env:
           NMEDIA_SECRET: ${{ secrets.NMEDIA_SECRET }}
-        run: echo $NMEDIA_SECRET > app/google-services.json
+        run: |
+          cmod +x ./gradlew
+          echo $NMEDIA_SECRET > app/google-services.json
+          ./gradlew build --info
+        
         
       - name: Run kLint check
         run: |
