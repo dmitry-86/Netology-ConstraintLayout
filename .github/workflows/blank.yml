@@ -32,4 +32,5 @@ jobs:
 
       - name: Run unit testing
         run:
+         cd 
          ./gradlew test
