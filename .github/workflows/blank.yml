@@ -16,7 +16,7 @@ jobs:
 
       - name: Build
         env:
-          NMEDIA_SECRET: ${{ secrets.NMEDIA_SECRET }}        
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_SECRET }}        
         run: |
           chmod +x ./gradlew
           echo $NMEDIA_SECRET > app/google-services.json     
@@ -28,8 +28,3 @@ jobs:
         with:
           name: app-debug.apk
           path: app/build/outputs/apk/debug/app-debug.apk
-
-      
-      - name: Run unit testing
-        run:
-         ./gradlew test
