@@ -19,7 +19,7 @@ jobs:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_SECRET }}        
         run: |
           chmod +x ./gradlew
-          echo $NMEDIA_SECRET > app/google-services.json     
+          echo $FIREBASE_SECRET > app/google-services.json     
         
           ./gradlew build --info
 
